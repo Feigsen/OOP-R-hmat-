@@ -50,4 +50,5 @@ class Suvelavastus {
 }
 interface Elamus {
    boolean saabElamuse();
+   j
 }
