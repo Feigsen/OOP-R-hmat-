@@ -9,9 +9,7 @@ class Vaataja {
     private double summa;
 
     Vaataja(String vaatajaNimi, int vaatajaVanus) {
-        nimi = vaatajaNimi;
-        vanus = vaatajaVanus;
-    }
+        nimi = vaatajaNimi;fsfs    }
     public String getNimi(){
         return nimi;
     }
