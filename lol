@@ -1,53 +1,56 @@
-public class Final {
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Tic_tac_toe {
+    static final int X = 3;
+    static final int Y = 3;
+    static final char mangija = 'X';
+    static final char TI = 'O';
+    static final char tuhi = '*';
+    static final char [][] vali = new char[Y][X];
+    static Scanner s = new Scanner(System.in);
+    static Random suv = new Random();
+
     public static void main(String[] args) {
-
+        initVali();
+        printVali();
     }
-}
-class Vaataja {
-    private String nimi;
-    private int vanus;
-    private double summa;
-
-    Vaataja(String vaatajaNimi, int vaatajaVanus) {
-        nimi = vaatajaNimi;fsfs    }
-    public String getNimi(){
-        return nimi;
+    static void initVali() {
+        for (int i = 0; i<Y; i++){
+            for (int j = 0; j<X; j++){
+                vali[i][j] = tuhi;
+            }
+        }
     }
-    public void setNimi(String nimi) {
-        this.nimi = nimi;
+    static void printVali(){
+        for (int i=0; i<Y; i++){
+            for (int j = 0; j<X; j++){
+                System.out.print(vali[i][j] + "\t");
+            }
+            System.out.println();
+        }
     }
-    public double getSumma(){
-        return summa;
+    static void sumbol (int x, int y, char sum){
+        vali[y][x] = sum;
     }
-    public void setSumma(double summa) {
-        this.summa = summa;
+    static void mangijaSamm (int x, int y) {
+        do {
+            x = s.nextInt() - 1;
+            y = s.nextInt() - 1;
+        } while (!kasTehaSamm(x,y));
+        vali[y][x] = mangija;
     }
-    public int getVanus() {
-        return vanus;
+    static void tiSamm(){
+        int x, y;
+        do {
+            int x = suv.nextInt(X);
+            int y = suv.nextInt(Y);
+        } while (!kasTehaSamm(x, y));
+        vali[y][x] = TI;
     }
-    public void setVanus(int vanus){
-        this.vanus = vanus;
+    static boolean kasTehaSamm (int x, int y) {
+        if (x < 0 || x >= X || y < 0 || y >= Y) return false;
+        if (vali[y][x] == tuhi) return true;
     }
-    public String toString() {
-        return "(" + nimi + ";" + vanus + ";" + summa + ")";
-    }
-
-}
-
-
-class Teatrietendus {
-    private String pealkiri;
-    private double hind;
-    private int arv;
-    Teatrietendus(String etendusePealkiri, double piletiHind, int kohtadeArv) {
-        pealkiri = etendusePealkiri;
-        hind = piletiHind;
-        arv = kohtadeArv;
-    }
-}
-class Suvelavastus {
-
-}
-interface Elamus {
-   boolean saabElamuse();
 }
