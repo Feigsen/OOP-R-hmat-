@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Tic_tac_toe {
+public class Trips_traps_trull {
     static final int X = 3;
     static final int Y = 3;
     static final char mangija = 'X';
@@ -16,6 +16,28 @@ public class Tic_tac_toe {
     public static void main(String[] args) {
         initVali();
         printVali();
+        while (true) {
+            mangijaSamm();
+            printVali();
+            if (voit(mangija)) {
+                System.out.println("Mängija on võitnud");
+                break;
+            }
+            if(vabakoht()) {
+                System.out.println("nichja");
+                break;
+            }
+            tiSamm();
+            printVali();
+            if(voit(TI)) {
+                System.out.println("Arvuti voit");
+                break;
+            }
+            if(vabakoht()) {
+                System.out.println("nichja");
+                break;
+            }
+        }    
     }
     static void initVali() {
         for (int i = 0; i<Y; i++){
@@ -52,7 +74,8 @@ public class Tic_tac_toe {
     }
     static boolean kasTehaSamm (int x, int y) {
         if (x < 0 || x >= X || y < 0 || y >= Y) return false;
-        if (vali[y][x] == tuhi) return true;
+        if (vali[y][x] != tuhi) return false;
+        return true;
     }
     static boolean vabakoht(int x, int y) {
         for (int i = 0, i < Y; i++) {
