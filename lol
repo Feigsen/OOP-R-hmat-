@@ -15,6 +15,7 @@ public class Trips_traps_trull {
     public static void main(String[] args) {
         initVali();
         printVali();
+        System.out.println("instruction");
         while (true) {
             mangijaSamm();
             printVali();
