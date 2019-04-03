@@ -11,6 +11,7 @@ public class Tic_tac_toe {
     static final char [][] vali = new char[Y][X];
     static Scanner s = new Scanner(System.in);
     static Random suv = new Random();
+    static final int voit = 3;
 
     public static void main(String[] args) {
         initVali();
@@ -53,4 +54,42 @@ public class Tic_tac_toe {
         if (x < 0 || x >= X || y < 0 || y >= Y) return false;
         if (vali[y][x] == tuhi) return true;
     }
+    static boolean vabakoht(int x, int y) {
+        for (int i = 0, i < Y; i++) {
+            for (int j = 0; j < X; j++) {
+                if(vali[i][j] == tuhi) return true;
+            }
+        }
+        return false;
+    }
+    
+    static boolean kasvoit(char sym) {
+        for (int i = 0; i < Y; i++) {
+            int result = 0;
+            for (int j = 0; j < X; j++) {
+                if (vali[i][j] == sym) result++;
+            }
+            if (result == voit) return true;
+        }
+        for (int i = 0; i < Y; i++) {
+            int result = 0;
+            for (int j = 0; j < X; j++) {
+                if (vali[j][i] == sym) result++;
+            }
+            if (result == voit) return true;
+        }
+        int esimenediag = 0;
+        for (int i = 0; i < Y; i++) {
+            for (int j = 0; j < X; j++) {
+                if(j == i && vali[i][j] == sym) esimenediag++;
+            }
+        } 
+        if (esimenediag == voit) return true;
+        int teinediag = 0;
+        for (int i = 0; j = Y; i < X && j > 0; i++, j--) {
+            if (vali[i][j] == sym) teinediag++;
+        }
+        if (teinediag == voit) return true;
+        return false;
+    }    
 }
