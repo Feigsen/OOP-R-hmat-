@@ -13,9 +13,11 @@ public class Trips_traps_trull {
     static final int voit = 3;
 
     public static void main(String[] args) {
+        System.out.println("Reeglid: Sisestada veeru number (1-3) esimesena, pärast seda sisestada rea number (1-3).");
+        System.out.println("\t" + "\t" + " Võidu saab, kui on täidetud 3 tähekest kas vertikaalis, horisontaalis või diagonaalis.");
+        System.out.println();
         initVali();
         printVali();
-        System.out.println("instruction");
         while (true) {
             mangijaSamm();
             printVali();
@@ -55,9 +57,7 @@ public class Trips_traps_trull {
             System.out.println();
         }
     }
-    static void sumbol (int x, int y, char sum){
-        vali[y][x] = sum;
-    }
+
     static void mangijaSamm () {
         int x, y;
         do {
@@ -89,33 +89,33 @@ public class Trips_traps_trull {
         return true;
     }
 
-    static boolean kasvoit(char sym) {
+    static boolean kasvoit(char sum) {
         for (int i = 0; i < Y; i++) {
-            int result = 0;
+            int tulemus = 0;
             for (int j = 0; j < X; j++) {
-                if (vali[i][j] == sym) result++;
+                if (vali[i][j] == sum) tulemus++;
             }
-            if (result == voit) return true;
+            if (tulemus == voit) return true;
         }
         for (int i = 0; i < Y; i++) {
-            int result = 0;
+            int tulemus = 0;
             for (int j = 0; j < X; j++) {
-                if (vali[j][i] == sym) result++;
+                if (vali[j][i] == sum) tulemus++;
             }
-            if (result == voit) return true;
+            if (tulemus == voit) return true;
         }
-        int esimenediag = 0;
+        int esimeneDiag = 0;
         for (int i = 0; i < Y; i++) {
             for (int j = 0; j < X; j++) {
-                if(j == i && vali[i][j] == sym) esimenediag++;
+                if(j == i && vali[i][j] == sum) esimeneDiag++;
             }
         }
-        if (esimenediag == voit) return true;
-        int teinediag = 0;
+        if (esimeneDiag == voit) return true;
+        int teineDiag = 0;
         for (int i = 0, j = Y - 1; i < X && j >= 0; i++, j--) {
-            if (vali[i][j] == sym) teinediag++;
+            if (vali[i][j] == sum) teineDiag++;
         }
-        if (teinediag == voit) return true;
+        if (teineDiag == voit) return true;
         return false;
     }
 }
