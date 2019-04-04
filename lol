@@ -2,10 +2,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Trips_traps_trull {
-    static final int X = 3;
+    static final int X = 3; //väli suurus
     static final int Y = 3;
-    static final char mangija = 'X';
-    static final char TI = 'O';
+    static final char mangija = 'X'; //sümbol millega käib mängija
+    static final char TI = 'O'; //sümbol millega käib arvuti
     static final char tuhi = '*';
     static final char [][] vali = new char[Y][X];
     static Scanner s = new Scanner(System.in);
@@ -45,11 +45,11 @@ public class Trips_traps_trull {
     static void initVali() {
         for (int i = 0; i<Y; i++){
             for (int j = 0; j<X; j++){
-                vali[i][j] = tuhi;
+                vali[i][j] = tuhi; //täidab väli tärnitega(tühja punktidega)
             }
         }
     }
-    static void printVali(){
+    static void printVali(){  //prindib väli
         for (int i=0; i<Y; i++){
             for (int j = 0; j<X; j++){
                 System.out.print(vali[i][j] + "\t");
@@ -62,7 +62,7 @@ public class Trips_traps_trull {
         int x, y;
         do {
             System.out.println("Sisestage koordinaadid: ");
-            x = s.nextInt() - 1;
+            x = s.nextInt() - 1; //sisestatud x koordinat miinus 1, kuna arvuti loeb koordinaadid nullist kaheni
             y = s.nextInt() - 1;
         } while (!kasTehaSamm(x, y));
         vali[y][x] = mangija;
@@ -70,17 +70,17 @@ public class Trips_traps_trull {
     static void tiSamm(){
         int x, y;
         do {
-            x = suv.nextInt(X);
-            y = suv.nextInt(Y);
+            x = suv.nextInt(X); //arvuti teeb juhuslike käike
+            y = suv.nextInt(Y); //sulgudes on piir, valida saab nullist kuni Y
         } while (!kasTehaSamm(x, y));
         vali[y][x] = TI;
     }
-    static boolean kasTehaSamm (int x, int y) {
+    static boolean kasTehaSamm (int x, int y) {  //arvuti kontrollib, kas punkt on vaba või juba täidetud
         if (x < 0 || x >= X || y < 0 || y >= Y) return false;
         if (vali[y][x] == tuhi) return true;
         return false;
     }
-    static boolean vabakoht() {
+    static boolean vabakoht() { //meetod kontrollib, kas on veel vabad punktid
         for (int i = 0; i < Y; i++) {
             for (int j = 0; j < X; j++) {
                 if(vali[i][j] == tuhi) return false;
@@ -90,24 +90,24 @@ public class Trips_traps_trull {
     }
 
     static boolean kasvoit(char sum) {
-        for (int i = 0; i < Y; i++) {
+        for (int i = 0; i < Y; i++) { //kas mingis ridas on võit
             int tulemus = 0;
             for (int j = 0; j < X; j++) {
                 if (vali[i][j] == sum) tulemus++;
             }
             if (tulemus == voit) return true;
         }
-        for (int i = 0; i < Y; i++) {
+        for (int i = 0; i < Y; i++) { //kas mingis veerus on võit
             int tulemus = 0;
             for (int j = 0; j < X; j++) {
                 if (vali[j][i] == sum) tulemus++;
             }
             if (tulemus == voit) return true;
         }
-        int esimeneDiag = 0;
+        int esimeneDiag = 0; //kui ridades ja veergudes võidu pole, siis vaadetakse diagonaalid
         for (int i = 0; i < Y; i++) {
             for (int j = 0; j < X; j++) {
-                if(j == i && vali[i][j] == sum) esimeneDiag++;
+                if(j == i && vali[i][j] == sum) esimeneDiag++; //peadiagonaal
             }
         }
         if (esimeneDiag == voit) return true;
